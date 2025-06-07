@@ -1,0 +1,17 @@
+{
+  "name": "scientific-calculator",
+  "build": {
+    "command": "npm run build",
+    "output": "dist"
+  },
+  "runtime": {
+    "node": "18.x"
+  },
+  "environment": {},
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+} 
