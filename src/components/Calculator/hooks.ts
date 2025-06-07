@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { evaluate, factorial, log, log10, sqrt, cbrt, pow, sin, cos, tan, asin, acos, atan } from 'mathjs';
+import { evaluate, factorial, pow } from 'mathjs';
 
 interface CalculatorState {
   display: string;
