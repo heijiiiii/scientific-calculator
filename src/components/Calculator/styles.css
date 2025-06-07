@@ -1,0 +1,67 @@
+.calculator {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: clamp(12px, 3vw, 20px);
+  width: min(400px, 100%);
+  max-width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+              0 15px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.keypad {
+  display: grid;
+  gap: clamp(4px, 1.5vw, 8px);
+  margin-top: clamp(12px, 3vw, 20px);
+}
+
+.memory-row,
+.scientific-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(4px, 1.5vw, 8px);
+  width: 100%;
+}
+
+.number-pad {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(4px, 1.5vw, 8px);
+  width: 100%;
+}
+
+/* 버튼 크기 조정 */
+.calculator-button {
+  aspect-ratio: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: clamp(35px, 8vw, 45px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(12px, 3vw, 14px);
+  box-sizing: border-box;
+}
+
+/* 모바일 최적화 */
+@media screen and (max-width: 480px) {
+  .calculator {
+    padding: 10px;
+  }
+  
+  .keypad {
+    gap: 4px;
+    margin-top: 12px;
+  }
+  
+  .memory-row,
+  .scientific-row,
+  .number-pad {
+    gap: 4px;
+  }
+  
+  .calculator-button {
+    min-height: 35px;
+    font-size: 12px;
+  }
+} 

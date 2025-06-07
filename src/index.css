@@ -8,328 +8,202 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   background: #9B7EFF;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 0;
+  padding: 16px;
+  touch-action: manipulation;
+  overflow: hidden;
 }
 
 .calculator-container {
   background: #f8f9fa;
   border-radius: 24px;
-  padding: 16px;
+  padding: clamp(12px, 3vw, 16px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  width: 400px;
-  max-width: 100%;
+  width: min(400px, 100%);
   margin: 0 auto;
+  max-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .calculator-display {
-  background: #ffffff;
+  background: #f8f9fa;
   border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 16px;
-  min-height: 100px;
-  border: 1px solid #e9ecef;
+  padding: clamp(12px, 3vw, 16px);
+  margin-bottom: clamp(8px, 2vw, 16px);
+  min-height: 80px;
 }
 
 .display-mode {
-  font-size: 14px;
-  color: #6c757d;
-  font-weight: 500;
+  font-size: clamp(12px, 3vw, 14px);
+  color: #6b7280;
   margin-bottom: 8px;
 }
 
 .display-result {
-  font-size: 40px;
-  font-weight: 700;
-  color: #212529;
+  font-size: clamp(24px, 6vw, 40px);
+  color: #111827;
   text-align: right;
-  margin-bottom: 4px;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  min-height: 40px;
+  margin-bottom: 8px;
+  word-break: break-all;
 }
 
 .display-expression {
-  font-size: 16px;
-  color: #868e96;
+  font-size: clamp(14px, 4vw, 16px);
+  color: #6b7280;
   text-align: right;
-  font-weight: 500;
+  word-break: break-all;
 }
 
 .calculator-grid {
   display: grid;
-  gap: 8px;
+  gap: clamp(4px, 1vw, 8px);
 }
 
 .memory-functions {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
+  gap: clamp(4px, 1vw, 8px);
+  margin-bottom: clamp(4px, 1vw, 8px);
 }
 
 .scientific-functions {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
+  gap: clamp(4px, 1vw, 8px);
+  margin-bottom: clamp(4px, 1vw, 8px);
 }
 
 .main-buttons {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
+  gap: clamp(4px, 1vw, 8px);
 }
 
 .calculator-button {
   border: none;
-  border-radius: 16px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  border-radius: 12px;
+  font-size: clamp(14px, 3.5vw, 16px);
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 50px;
-  font-size: 18px;
+  transition: all 0.2s;
+  padding: clamp(8px, 2vw, 12px);
+  min-height: clamp(40px, 10vw, 45px);
+  user-select: none;
+  touch-action: manipulation;
 }
 
-.calculator-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+@media (hover: hover) {
+  .calculator-button:hover {
+    filter: brightness(0.95);
+    transform: translateY(-1px);
+  }
 }
 
 .calculator-button:active {
-  transform: translateY(0);
+  transform: translateY(1px);
+  filter: brightness(0.9);
 }
 
 /* Memory buttons - Blue */
 .calculator-button-memory {
-  background: #6BA6FF;
+  background: #7EB2FF;
   color: white;
-  height: 45px;
-  font-size: 14px;
-  font-weight: 600;
 }
 
-.calculator-button-memory:hover {
-  background: #5A95EE;
-}
-
-/* Function buttons - Purple */
 .calculator-button-function {
-  background: #8B7EFF;
+  background: #9B7EFF;
   color: white;
-  height: 45px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.calculator-button-function:hover {
-  background: #7A6DEE;
-}
-
-/* 화살표 버튼 특별 스타일 */
-.calculator-button-backspace {
-  font-weight: 700;
-  font-size: 16px;
 }
 
 /* Number buttons - Light gray */
 .calculator-button-number {
   background: #F1F3F5;
-  color: #212529;
-  height: 55px;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.calculator-button-number:hover {
-  background: #E9ECEF;
+  color: #111827;
+  height: 50px;
+  font-size: 20px;
 }
 
 /* Operator buttons - Orange */
 .calculator-button-operator {
-  background: #FF9F43;
+  background: #DEB887;
   color: white;
-  height: 55px;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.calculator-button-operator:hover {
-  background: #FF8E28;
+  height: 50px;
+  font-size: 20px;
 }
 
 /* Special buttons */
 .calculator-button-clear {
-  background: #8B7EFF;
+  background: #FF7E7E;
   color: white;
-  height: 55px;
+  height: 50px;
   font-size: 20px;
-  font-weight: 700;
-}
-
-.calculator-button-clear:hover {
-  background: #7A6DEE;
 }
 
 .calculator-button-equals {
-  background: #FF9F43;
+  background: #9B7EFF;
   color: white;
-  height: 55px;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.calculator-button-equals:hover {
-  background: #FF8E28;
-}
-
-/* % 버튼을 주황색으로 변경 */
-.calculator-button-percent {
-  background: #FF9F43;
-  color: white;
-  height: 55px;
+  height: 50px;
   font-size: 20px;
-  font-weight: 700;
 }
 
-.calculator-button-percent:hover {
-  background: #FF8E28;
-}
-
-/* 태블릿 디바이스 (768px 이하) */
-@media (max-width: 768px) {
-  body {
-    padding: 16px;
-  }
-
-  .calculator-container {
-    width: 100%;
-    max-width: 500px;
-    padding: 16px;
-  }
-
-  .calculator-button {
-    min-height: 45px;
-    border-radius: 14px;
-  }
-}
-
-/* 모바일 디바이스 (480px 이하) */
-@media (max-width: 480px) {
-  body {
-    padding: 12px;
-  }
-  
-  .calculator-container {
-    padding: 12px;
-    border-radius: 20px;
-  }
-  
-  .calculator-display {
-    padding: 12px;
-    min-height: 90px;
-    margin-bottom: 12px;
-  }
-  
-  .display-result {
-    font-size: 32px;
-    min-height: 40px;
-  }
-  
-  .display-mode {
-    font-size: 12px;
-  }
-  
-  .display-expression {
-    font-size: 14px;
-  }
-  
-  .calculator-grid {
-    gap: 6px;
-  }
-  
-  .memory-functions,
-  .scientific-functions,
-  .main-buttons {
-    gap: 6px;
-  }
-  
-  .calculator-button {
-    min-height: 40px;
-    border-radius: 12px;
-  }
-  
-  .calculator-button-memory,
-  .calculator-button-function {
-    height: 40px;
-    font-size: 12px;
-  }
-  
-  .calculator-button-number,
-  .calculator-button-operator,
-  .calculator-button-clear,
-  .calculator-button-equals,
-  .calculator-button-percent {
-    height: 45px;
-    font-size: 20px;
-  }
-}
-
-/* 작은 모바일 디바이스 (360px 이하) */
-@media (max-width: 360px) {
+/* 모바일 최적화를 위한 미디어 쿼리 */
+@media screen and (max-width: 480px) {
   body {
     padding: 8px;
   }
 
   .calculator-container {
-    padding: 10px;
     border-radius: 16px;
-  }
-
-  .calculator-display {
     padding: 10px;
-    min-height: 80px;
-    margin-bottom: 10px;
   }
 
-  .display-result {
-    font-size: 28px;
-  }
-
-  .calculator-button-memory,
-  .calculator-button-function {
-    font-size: 11px;
-  }
-
-  .calculator-button-number,
-  .calculator-button-operator,
-  .calculator-button-clear,
-  .calculator-button-equals,
-  .calculator-button-percent {
-    height: 40px;
-    font-size: 18px;
-  }
-
-  .calculator-grid {
-    gap: 5px;
+  .calculator-button {
+    font-size: 14px;
+    padding: 6px;
   }
 
   .memory-functions,
-  .scientific-functions,
+  .scientific-functions {
+    gap: 4px;
+  }
+
   .main-buttons {
-    gap: 5px;
+    gap: 4px;
+  }
+}
+
+/* 가로 모드 최적화 */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+  body {
+    align-items: flex-start;
+    padding: 8px;
+  }
+
+  .calculator-container {
+    max-height: 98vh;
+    padding: 8px;
+  }
+
+  .calculator-display {
+    min-height: 60px;
+    padding: 8px;
+  }
+
+  .calculator-button {
+    min-height: 35px;
+    padding: 4px;
   }
 }

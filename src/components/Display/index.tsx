@@ -1,17 +1,18 @@
+import React from 'react';
+import './styles.css';
+
 interface DisplayProps {
+  value: string;
   mode: string;
-  result: string;
   expression: string;
 }
 
-const Display = ({ mode, result, expression }: DisplayProps) => {
+export const Display: React.FC<DisplayProps> = ({ value, mode, expression }) => {
   return (
-    <div className="calculator-display">
-      <div className="display-mode">{mode}</div>
-      <div className="display-result">{result}</div>
-      <div className="display-expression">{expression}</div>
+    <div className="display">
+      <div className="mode">{mode}</div>
+      <div className="expression">{expression || '0'}</div>
+      <div className="value">{value}</div>
     </div>
   );
-};
-
-export default Display; 
+}; 

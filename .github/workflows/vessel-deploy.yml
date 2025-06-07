@@ -1,0 +1,33 @@
+name: Deploy to Vessel
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Login to Vessel
+      uses: docker/login-action@v2
+      with:
+        registry: registry.vessel.sh
+        username: ${{ secrets.VESSEL_USERNAME }}
+        password: ${{ secrets.VESSEL_TOKEN }}
+        
+    - name: Build and push
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: registry.vessel.sh/${{ secrets.VESSEL_PROJECT }}/calculator:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max 
